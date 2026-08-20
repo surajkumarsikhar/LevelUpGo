@@ -13,8 +13,6 @@ type Zone struct {
 	records map[string]*Record
 }
 
-// TODO: detectCycle(zone *Zone, name string) bool
-//       Follow CNAME chain with a visited map. Return true if cycle found.
 func detectCycle(zone *Zone, name string) bool {
 	seen := make(map[string]bool)
 	for !seen[name] {
