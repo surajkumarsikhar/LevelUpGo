@@ -33,7 +33,6 @@ func main() {
 	h.Save("draft 1")
 	h.Save("draft 2")
 	h.Save("draft 3")
-	fmt.Println("Saved 3 states")
 
 	fmt.Println("Can undo:", h.CanUndo())
 
