@@ -34,8 +34,6 @@ func main() {
 	h.Save("draft 2")
 	h.Save("draft 3")
 
-	fmt.Println("Can undo:", h.CanUndo())
-
 	val, ok := h.Undo()
 	fmt.Printf("Undo: %s, %v\n", val, ok)
 
