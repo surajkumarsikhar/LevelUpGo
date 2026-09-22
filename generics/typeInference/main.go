@@ -20,12 +20,10 @@ func Map[T, R any](slice []T, fn func(T) R) []R {
 }
 
 func main() {
-	// Zero requires explicit types (no arguments to infer from)
 	fmt.Printf("Zero[int]: %d\n", Zero[int]())
 	fmt.Printf("Zero[string]: %s(empty)\n", Zero[string]())
 	fmt.Printf("Zero[bool]: %v\n", Zero[bool]())
 
-	// Map can infer types from arguments
 	nums := []int{1, 2, 3}
 
 	doubled := Map(nums, func(n int) int {
