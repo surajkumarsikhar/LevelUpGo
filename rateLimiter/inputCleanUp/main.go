@@ -1,4 +1,3 @@
-package inputcleanup
 package main
 
 import (
