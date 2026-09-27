@@ -47,7 +47,7 @@ func main() {
 
 	user, err := FetchUser(server.URL, 1)
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
+		fmt.Printf("Error : %v\n", err)
 		return
 	}
 
