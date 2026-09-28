@@ -38,7 +38,6 @@ func FetchUser(baseURL string, id int) (*User, error) {
 }
 
 func main() {
-	// Create a test server that returns mock user data
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		user := User{ID: 1, Name: "alice", Email: "alice@example.com"}
 		json.NewEncoder(w).Encode(user)
