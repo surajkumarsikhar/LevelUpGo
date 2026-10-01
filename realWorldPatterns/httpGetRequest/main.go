@@ -16,7 +16,6 @@ type User struct {
 
 // FetchUser fetches a user from the API by ID.
 func FetchUser(baseURL string, id int) (*User, error) {
-	// Your code here
 	client := &http.Client{Timeout: 10 * time.Second}
 	url := fmt.Sprintf("%s/users/%d", baseURL, id)
 
