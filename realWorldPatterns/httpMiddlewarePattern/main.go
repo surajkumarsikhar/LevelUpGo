@@ -1,4 +1,3 @@
-package httpmiddlewarepattern
 package main
 
 import (
@@ -9,10 +8,10 @@ import (
 
 func loggingMiddleware(next http.Handler) http.Handler {
 	// Your code here
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Request: %s %s\n", r.Method, r.URL.Path)
 
-		next.ServeHTTP(w,r)
+		next.ServeHTTP(w, r)
 
 		fmt.Println("Response complete")
 	})
@@ -20,10 +19,10 @@ func loggingMiddleware(next http.Handler) http.Handler {
 
 func authMiddleware(next http.Handler) http.Handler {
 	// Your code here
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		token := r.Header.Get("Authorization")
 
-		if token == ""{
+		if token == "" {
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
 		}
