@@ -37,7 +37,7 @@ func FetchUser(baseURL string, id int) (*User, error) {
 
 func main() {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		user := User{ID: 1, Name: "alice", Email: "alice@example.co.edu"}
+		user := User{ID: 1, Name: "alice", Email: "alice@example.co.in"}
 		json.NewEncoder(w).Encode(user)
 	}))
 	defer server.Close()
