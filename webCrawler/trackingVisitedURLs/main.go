@@ -25,14 +25,19 @@ type VisitedTracker struct {
 // NewVisitedTracker creates a new empty tracker.
 func NewVisitedTracker() *VisitedTracker {
 	// TODO: Implement
-	return nil
+	return &VisitedTracker{
+		visited : make(map[string]bool),
+	}
 }
 
 // HasVisited returns true if the URL has been visited before.
 // Uses RLock for concurrent read access.
 func (v *VisitedTracker) HasVisited(url string) bool {
 	// TODO: Implement
-	return false
+	url = normalizeURL(url)
+	v.mu.RLock()
+	defer v.mu.RUnlock()
+	return v.visited[url]
 }
 
 // MarkVisited marks a URL as visited.
@@ -41,13 +46,22 @@ func (v *VisitedTracker) HasVisited(url string) bool {
 // This must be atomic — check and set in one locked operation.
 func (v *VisitedTracker) MarkVisited(url string) bool {
 	// TODO: Implement
-	return false
+	url = normalizeURL(url)
+	if v.HasVisited(url) {
+		return false
+	}
+	v.mu.Lock()
+	defer v.mu.Unlock()
+	v.visited[url] = true
+	return true
 }
 
 // Count returns the number of unique URLs visited.
 func (v *VisitedTracker) Count() int {
 	// TODO: Implement
-	return 0
+	v.mu.RLock()
+	defer v.mu.RUnlock()
+	return len(v.visited)
 }
 
 func main() {
@@ -58,8 +72,8 @@ func main() {
 		"http://gadgetshop/shop/",
 		"http://gadgetshop/shop/products",
 		"http://gadgetshop/shop/about",
-		"http://gadgetshop/shop/",          // duplicate
-		"http://gadgetshop/shop/products/", // duplicate (trailing slash)
+		"http://gadgetshop/shop/",            // duplicate
+		"http://gadgetshop/shop/products/",   // duplicate (trailing slash)
 	}
 
 	for _, u := range urls {
