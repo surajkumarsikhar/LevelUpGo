@@ -26,7 +26,7 @@ type VisitedTracker struct {
 func NewVisitedTracker() *VisitedTracker {
 	// TODO: Implement
 	return &VisitedTracker{
-		visited : make(map[string]bool),
+		visited: make(map[string]bool),
 	}
 }
 
@@ -72,8 +72,8 @@ func main() {
 		"http://gadgetshop/shop/",
 		"http://gadgetshop/shop/products",
 		"http://gadgetshop/shop/about",
-		"http://gadgetshop/shop/",            // duplicate
-		"http://gadgetshop/shop/products/",   // duplicate (trailing slash)
+		"http://gadgetshop/shop/",          // duplicate
+		"http://gadgetshop/shop/products/", // duplicate (trailing slash)
 	}
 
 	for _, u := range urls {
